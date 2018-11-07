@@ -29,8 +29,3 @@ public:
     
     ~int_buffer();
 };
-
-
-
-
-int_buffer a;
