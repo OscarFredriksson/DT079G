@@ -1,10 +1,19 @@
+#ifndef INT_BUFFER_H
+#define INT_BUFFER_H
+#endif
+
 #include <cstdlib>
 
 class int_buffer
 { 
 public:
     
-    explicit int_buffer(size_t size); // size_t is defined in cstdlib
+    //int_buffer() = default; //default constructor
+
+    explicit int_buffer(size_t size)    
+        :_size(size), _ptr(new int[size])    //initiera _size med inargumentets värde
+        {};
+
     
     int_buffer(const int* source , size_t size); 
     
@@ -14,9 +23,8 @@ public:
     
     int_buffer & operator=(const int_buffer& rhs); // copy assign
     
-    int_buffer & operator=(int_buffer&& rhs);
-
-    // move assign
+    int_buffer & operator=(int_buffer&& rhs);   // move assign
+    
     size_t size() const;
     
     int* begin();
@@ -28,4 +36,10 @@ public:
     const int* end() const; 
     
     ~int_buffer();
+
+private:
+
+    int* _ptr = nullptr;
+    size_t _size = 0;
+
 };
