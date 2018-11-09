@@ -61,16 +61,16 @@ int* int_buffer::begin()
 
 int* int_buffer::end() 
 {
-    return _ptr + _size - 1;
+    return _ptr + _size;
 }
 
 const int* int_buffer::begin() const
 {
-    return _ptr;
+    return const_cast<int*>(_ptr);
 }
 
 const int* int_buffer::end() const
 {
-    return _ptr + _size - 1;
+    return _ptr + _size;
 }
 

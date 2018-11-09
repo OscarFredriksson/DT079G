@@ -38,5 +38,15 @@ void print_buffer(int_buffer src)
 
 void f(int_buffer buf)
 {
+    int j = 1;
+    for(int* i = buf.begin(); i != buf.end(); i++)
+    {
+        *i = j;
+        j++;
+    }
+
+    for(const int* i = buf.begin(); i != buf.end(); i++)
+        std::cout << *i << std::endl;
+
 
 }   //destructor körs
