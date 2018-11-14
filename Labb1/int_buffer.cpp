@@ -1,10 +1,12 @@
 #include "int_buffer.h"
+#include <utility>
+#include <stdio.h>
 
 int_buffer::int_buffer(size_t size) 
     : _size(size), _ptr(new int[size])
 {
     puts("constructor");
-};    //initiera _size med inargumentets värde
+};
     
 
 int_buffer::int_buffer(const int* source , size_t size)
