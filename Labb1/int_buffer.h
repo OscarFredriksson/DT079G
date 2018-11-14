@@ -2,14 +2,14 @@
 #define INT_BUFFER_H
 #endif
 
-#include <cstdlib>
-#include <utility>
-#include <stdio.h>
+#include <cstdlib>  //size_t
 
 class int_buffer
 { 
 public:
     
+    int_buffer() = delete;
+
     explicit int_buffer(size_t size);
 
     int_buffer(const int* source , size_t size);    //resize constructor

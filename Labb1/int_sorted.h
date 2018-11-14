@@ -9,6 +9,8 @@ class int_sorted
 { 
 public:
     
+    int_sorted() = delete;
+
     int_sorted(const int* source , size_t size); 
     
     size_t size() const;
