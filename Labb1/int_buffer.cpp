@@ -24,8 +24,7 @@ int_buffer::int_buffer(const int_buffer& rhs)
 int_buffer::int_buffer(int_buffer&& rhs)
     : _size(rhs.size())
 {
-    //puts("move constructor");
-    *this = std::move(rhs);
+    (*this) = std::move(rhs);
 };
 
 int_buffer & int_buffer::operator=(const int_buffer& rhs)
@@ -41,6 +40,8 @@ int_buffer & int_buffer::operator=(const int_buffer& rhs)
 
 int_buffer& int_buffer::operator=(int_buffer&& rhs)
 {
+    if (this == &rhs) return *this;
+    
     delete[] _ptr;
 
     _ptr = rhs._ptr;
@@ -48,7 +49,6 @@ int_buffer& int_buffer::operator=(int_buffer&& rhs)
 
     _size = rhs.size();
     rhs._size = 0;
-    
 
     return *this;
 };

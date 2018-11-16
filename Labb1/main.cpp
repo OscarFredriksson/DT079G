@@ -14,41 +14,19 @@ void print_sorted(int_sorted src)
 
 int main()
 {
-    /*int test_source[5] = {5,2,1,2,5};
-    
-    int_buffer test_buffer(test_source, 5);
-
-    int_buffer copy_test(test_buffer);
- 
-    int_buffer test2 = test_buffer;
-
-    int_buffer test3(std::move(test2));
-
-    print_buffer(test3);
-
-    std::cout << std::endl;
-
-    print_buffer(test2);*/
-
-    //int i = 0;
-
     //f(int_buffer(10));  //constructor körs 
 
     int test_source[5] = {5,2,1,2,5};
     int_buffer test_buffer(test_source, 5);
 
-    //int_buffer tmp = test_buffer;
-
-    //print_buffer(tmp);
-
-    int_sorted test_sorted(test_buffer.begin(), test_buffer.size()); 
+    /*int_sorted test_sorted(test_buffer.begin(), test_buffer.size()); 
 
     print_sorted(test_sorted);
     std::cout << std::endl;
 
     test_sorted.insert(3);
 
-    print_sorted(test_sorted);
+    print_sorted(test_sorted);*/
 
     return 0;
 }
