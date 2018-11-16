@@ -54,7 +54,35 @@ const int* int_sorted::end() const
     return _buffer.end();
 };
 
-/*int_sorted int_sorted::merge(const int_sorted& merge_with) const
+int_sorted int_sorted::merge(const int_sorted& merge_with) const
 {
+    int_buffer merged(size() + merge_with.size());
 
-};*/
+    const int* iter1 = begin();
+    const int* iter2 = merge_with.begin();
+    int* merged_iter = merged.begin();
+
+    for(;iter1 != end() && iter2 != merge_with.end(); merged_iter++)
+    {
+        if(*iter1 < *iter2)
+        {
+            *merged_iter = *iter1;
+            iter1++;
+        }
+        else
+        {
+            *merged_iter = *iter2;
+            iter2++;
+        }
+    }
+
+    //Om det finns nått kvar i någon av buffrarna, skriv dessa till den nya
+    for(;iter1 != end(); iter1++, merged_iter++) 
+        *merged_iter = *iter1;
+    
+    for(;iter2 != merge_with.end(); iter2++, merged_iter++) 
+        *merged_iter = *iter2;
+
+
+    return int_sorted(merged.begin(), merged.size());
+};

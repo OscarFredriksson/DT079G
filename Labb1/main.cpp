@@ -8,6 +8,7 @@ void f(int_buffer buf);
 
 void print_sorted(int_sorted src)
 {
+    std::cout << std::endl;
     for(const int* i = src.begin(); i != src.end(); i++)
         std::cout << *i << std::endl;
 }
@@ -19,14 +20,26 @@ int main()
     int test_source[5] = {5,2,1,2,5};
     int_buffer test_buffer(test_source, 5);
 
-    /*int_sorted test_sorted(test_buffer.begin(), test_buffer.size()); 
+    int_sorted test_sorted(test_buffer.begin(), test_buffer.size()); 
+
+    //print_sorted(test_sorted);
+    //std::cout << std::endl;
+
+    test_sorted.insert(7);
 
     print_sorted(test_sorted);
-    std::cout << std::endl;
 
-    test_sorted.insert(3);
+    int_sorted merge_with(test_buffer.begin(), test_buffer.size());
 
-    print_sorted(test_sorted);*/
+    merge_with.insert(4);
+    merge_with.insert(19);
+    merge_with.insert(-2);
+
+    print_sorted(merge_with);
+
+    test_sorted = test_sorted.merge(merge_with);
+
+    print_sorted(test_sorted);
 
     return 0;
 }

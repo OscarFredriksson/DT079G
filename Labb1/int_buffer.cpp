@@ -87,8 +87,3 @@ const int* int_buffer::end() const
     //puts("const end");
     return _ptr + _size;
 };
-
-/*& int_buffer::operator[](size_t index)
-{
-    return _ptr[index];
-}*/
