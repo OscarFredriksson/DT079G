@@ -1,21 +1,13 @@
 #include "int_sorted.h"
 #include <utility>
 #include <stdio.h>
+#include <algorithm>
+#include <iostream>
 
 int_sorted::int_sorted(const int* source, size_t size)
     :_buffer(source, size)
 {
-    //bubble sort
-    /*for (int* i = _buffer.begin(); i != _buffer.end()-1; i++)       
-  
-        for (int* j = _buffer.begin(); j != _buffer.end() - i + _buffer.end() -1; j++)  
-            
-            if (*j > *(j+1)) 
-            {
-                int* temp = j;
-                j = j + 1;
-                (j + 1) = temp; 
-            }*/
+    std::sort(_buffer.begin(), _buffer.end());
 };
 
 size_t int_sorted::size() const
@@ -25,7 +17,31 @@ size_t int_sorted::size() const
 
 int* int_sorted::insert(int value)
 {
+    int_buffer temp_buffer(_buffer.size()+1);
 
+    int* insertpoint = _buffer.begin();
+
+    for(const int* i = _buffer.begin(); i != _buffer.end(); i++)
+    {
+        if(value < *i) break;
+        ++insertpoint;
+    }
+    
+    int* temp_iter = temp_buffer.begin();
+
+    for(int* i = _buffer.begin(); i != _buffer.end() + 1; i++, temp_iter++)
+    {
+        if(i == insertpoint)    
+        {
+            *temp_iter = value;
+            temp_iter++;
+        }
+        *temp_iter = *i;
+    }
+
+    _buffer = std::move(temp_buffer); 
+
+    return insertpoint;
 };
 
 const int* int_sorted::begin() const
@@ -38,7 +54,7 @@ const int* int_sorted::end() const
     return _buffer.end();
 };
 
-int_sorted int_sorted::merge(const int_sorted& merge_with) const
+/*int_sorted int_sorted::merge(const int_sorted& merge_with) const
 {
 
-};
+};*/

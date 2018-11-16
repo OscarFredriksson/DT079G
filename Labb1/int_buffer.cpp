@@ -1,14 +1,13 @@
 #include "int_buffer.h"
-#include <utility>
-#include <stdio.h>
+#include <utility>  //move
+#include <stdio.h>  //puts
 
 int_buffer::int_buffer(size_t size) 
     : _size(size), _ptr(new int[size])
 {
-    puts("constructor");
+    //puts("constructor");
 };
     
-
 int_buffer::int_buffer(const int* source , size_t size)
     : _size(size), _ptr(new int[size])
 {    
@@ -18,29 +17,38 @@ int_buffer::int_buffer(const int* source , size_t size)
 int_buffer::int_buffer(const int_buffer& rhs)
     : _size(rhs.size()), _ptr(new int[rhs.size()])
 {
-    puts("copy constructor");
-    *this = rhs;
+    for(size_t i = 0; i < rhs.size(); i++) 
+        _ptr[i] = *(rhs.begin() + i);
 };
 
 int_buffer::int_buffer(int_buffer&& rhs)
     : _size(rhs.size())
 {
-    puts("move constructor");
+    //puts("move constructor");
     *this = std::move(rhs);
 };
 
 int_buffer & int_buffer::operator=(const int_buffer& rhs)
 {
-    for(int i = 0; i < rhs.size(); i++) 
-        _ptr[i] = *(rhs.begin() + i);
+    if (this == &rhs) return *this;
+
+    int_buffer tmp(rhs);
+
+    std::swap(*this, tmp);
     
     return *this;
 };
 
-int_buffer & int_buffer::operator=(int_buffer&& rhs)
+int_buffer& int_buffer::operator=(int_buffer&& rhs)
 {
-    _ptr = rhs.begin();
+    delete[] _ptr;
+
+    _ptr = rhs._ptr;
     rhs._ptr = nullptr;
+
+    _size = rhs.size();
+    rhs._size = 0;
+    
 
     return *this;
 };
@@ -52,27 +60,35 @@ size_t int_buffer::size() const
 
 int_buffer::~int_buffer()
 {
-    puts("destructor");
+    //puts("destructor");
     delete[] _ptr;
 };
 
 int* int_buffer::begin()
 {
+    //puts("begin");
     return _ptr;
 };
 
 int* int_buffer::end() 
 {
+    //puts("end");
     return _ptr + _size;
 };
 
 const int* int_buffer::begin() const
 {
-    return const_cast<int*>(_ptr);
+    //puts("const begin");
+    return _ptr;
 };
 
 const int* int_buffer::end() const
 {
+    //puts("const end");
     return _ptr + _size;
 };
 
+/*& int_buffer::operator[](size_t index)
+{
+    return _ptr[index];
+}*/

@@ -2,7 +2,7 @@
 #define INT_BUFFER_H
 #endif
 
-#include <cstdlib>  //size_t
+#include <cstddef>  //size_t
 
 class int_buffer
 { 
@@ -31,8 +31,10 @@ public:
     const int* begin() const; 
     
     const int* end() const; 
-    
+
     ~int_buffer();
+
+    //int& operator[](size_t index);
 
 private:
 
