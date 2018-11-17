@@ -7,6 +7,12 @@
 int_sorted::int_sorted(const int* source, size_t size)
     :_buffer(source, size)
 {
+    //if(size <= 1) return;
+
+    //int_sorted temp = sort(_buffer.begin(), _buffer.end());
+
+    //_buffer = std::move(temp._buffer);
+
     std::sort(_buffer.begin(), _buffer.end());
 };
 
@@ -86,3 +92,16 @@ int_sorted int_sorted::merge(const int_sorted& merge_with) const
 
     return int_sorted(merged.begin(), merged.size());
 };
+
+int_sorted int_sorted::sort(const int* begin , const int* end)
+{
+    if (begin == end) return int_sorted(nullptr, 0); 
+    
+    if (begin == end -1) return int_sorted(begin, 1);
+
+    ptrdiff_t half = (end - begin) / 2; // pointer diff type
+
+    const int* mid = begin + half;
+    
+    return sort(begin, mid).merge(sort(mid, end));
+}

@@ -34,8 +34,6 @@ public:
 
     ~int_buffer();
 
-    //int& operator[](size_t index);
-
 private:
 
     int* _ptr = nullptr;

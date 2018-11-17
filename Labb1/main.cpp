@@ -15,15 +15,12 @@ void print_sorted(int_sorted src)
 
 int main()
 {
-    //f(int_buffer(10));  //constructor körs 
+    //f(int_buffer(10));
 
     int test_source[5] = {5,2,1,2,5};
     int_buffer test_buffer(test_source, 5);
 
     int_sorted test_sorted(test_buffer.begin(), test_buffer.size()); 
-
-    //print_sorted(test_sorted);
-    //std::cout << std::endl;
 
     test_sorted.insert(7);
 
@@ -52,6 +49,8 @@ void print_buffer(int_buffer src)
 
 void f(int_buffer buf)
 {
+    //constructor för buf körs
+
     int j = 1;
     for(int* i = buf.begin(); i != buf.end(); i++)  //Icke-konstanta begin och end funktioner körs här
     {
@@ -62,5 +61,5 @@ void f(int_buffer buf)
     for(const int* i = buf.begin(); i != buf.end(); i++)    //Icke-konstanta begin och end funktioner körs även här
         std::cout << *i << std::endl;
 
-    //destructor körs
+    //destructor för buf körs
 }   
