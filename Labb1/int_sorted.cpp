@@ -7,19 +7,17 @@
 int_sorted::int_sorted(const int* source, size_t size)
     :_buffer(source, size)
 {
-    //if(size <= 1) return;
+    if(size < 2)    return;
 
-    //int_sorted temp = sort(_buffer.begin(), _buffer.end());
-
-    //_buffer = std::move(temp._buffer);
-
-    std::sort(_buffer.begin(), _buffer.end());
-};
+    int_sorted temp = sort(source, source + size);
+ 
+    _buffer = std::move(temp._buffer);
+}
 
 size_t int_sorted::size() const
 {
   return _buffer.size();  
-};
+}
 
 int* int_sorted::insert(int value)
 {
@@ -48,17 +46,17 @@ int* int_sorted::insert(int value)
     _buffer = std::move(temp_buffer); 
 
     return insertpoint;
-};
+}
 
 const int* int_sorted::begin() const
 {
     return _buffer.begin();
-};
+}
 
 const int* int_sorted::end() const
 {
     return _buffer.end();
-};
+}
 
 int_sorted int_sorted::merge(const int_sorted& merge_with) const
 {
@@ -81,7 +79,6 @@ int_sorted int_sorted::merge(const int_sorted& merge_with) const
             iter2++;
         }
     }
-
     //Om det finns nått kvar i någon av buffrarna, skriv dessa till den nya
     for(;iter1 != end(); iter1++, merged_iter++) 
         *merged_iter = *iter1;
@@ -89,15 +86,18 @@ int_sorted int_sorted::merge(const int_sorted& merge_with) const
     for(;iter2 != merge_with.end(); iter2++, merged_iter++) 
         *merged_iter = *iter2;
 
+    int_sorted ret(nullptr, 0);
+    
+    ret._buffer = std::move(merged);
 
-    return int_sorted(merged.begin(), merged.size());
-};
+    return ret;
+}
 
 int_sorted int_sorted::sort(const int* begin , const int* end)
 {
-    if (begin == end) return int_sorted(nullptr, 0); 
+    if (begin == end)   return int_sorted(nullptr, 0); 
     
-    if (begin == end -1) return int_sorted(begin, 1);
+    if (begin == end - 1)   return int_sorted(begin, 1);
 
     ptrdiff_t half = (end - begin) / 2; // pointer diff type
 
