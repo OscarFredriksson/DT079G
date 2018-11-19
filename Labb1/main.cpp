@@ -114,40 +114,40 @@ void test_sorts()
 
 
     //Start selection sort
-    auto start = std::chrono::high_resolution_clock::now();
+    auto startselection = std::chrono::high_resolution_clock::now();
     
     selection_sort(to_sort.begin(), to_sort.end());
     
-    auto finish = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> elapsed = finish - start;
+    auto finishselection = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsedselection = finishselection - startselection;
     
-    std::cout << "Selection sort took: " << elapsed.count() << "s." << std::endl;
+    std::cout << "Selection sort took: " << elapsedmerge.count() << "s." << std::endl;
     
     
     to_sort = int_buffer(src, size);
 
     //Start merge sort
-    start = std::chrono::high_resolution_clock::now();
+    auto startmerge = std::chrono::high_resolution_clock::now();
     
     merge_sort(to_sort.begin(), to_sort.end());
     
-    finish = std::chrono::high_resolution_clock::now();
-    elapsed = finish - start;
+    auto finishmerge = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsedmerge = finishmerge - startmerge;
     
-    std::cout << "Merge sort took: " << elapsed.count() << "s." << std::endl;
+    std::cout << "Merge sort took: " << elapsedmerge.count() << "s." << std::endl;
 
     
     to_sort = int_buffer(src, size);
 
     //Start std::sort
-    start = std::chrono::high_resolution_clock::now();
+    auto startstd = std::chrono::high_resolution_clock::now();
     
     std::sort(to_sort.begin(), to_sort.end());
     
-    finish = std::chrono::high_resolution_clock::now();
-    elapsed = finish - start;
+    auto finishstd = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsedstd = finishstd - startstd;
     
-    std::cout << "std::sort took: " << elapsed.count() << "s." << std::endl;
+    std::cout << "std::sort took: " << elapsedstd.count() << "s." << std::endl;
 
     std::cout << std::endl;
 }
