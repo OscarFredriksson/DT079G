@@ -5,8 +5,14 @@
 #include <iostream>
 
 int_sorted::int_sorted(const int* source, size_t size)
-    :_buffer(source, size)
+    :_buffer(nullptr, 0)
 {
+    if(size == 1)
+    {
+        //insert(*source);
+        int_buffer temp(source, size);
+        _buffer = std::move(temp);
+    }
     if(size < 2)    return;
 
     int_sorted temp = sort(source, source + size);

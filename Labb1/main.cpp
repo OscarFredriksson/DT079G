@@ -22,8 +22,6 @@ void print_sorted(int_sorted src)
 
 void selection_sort(int* begin, int* end);
 
-int_sorted merge_sort(const int* begin , const int* end);
-
 void test_insert();
 
 void test_sorts();
@@ -71,30 +69,12 @@ void selection_sort(int* begin, int* end)
     }
 }
 
-int_sorted merge_sort(const int* begin , const int* end)
-{
-    if (begin == end)   return int_sorted(nullptr, 0); 
-    
-    if (begin == end - 1)   return int_sorted(begin, 1);
-
-    ptrdiff_t half = (end - begin) / 2; // pointer diff type
-
-    const int* mid = begin + half;
-    
-    return merge_sort(begin, mid).merge(merge_sort(mid, end));
-}
-
 void test_insert()
 {
-    /*std::random_device rd;
-    std::mt19937 seed(rd());
-    std::uniform_int_distribution<int> rndm(1, 500);*/
-
-
     int_sorted test(nullptr, 0);
 
     for(int i = 0; i < 200; i++)
-        test.insert(rand() % 500);    //rndm(seed));
+        test.insert(rand() % 500);
 
     print_sorted(test);
 }
@@ -103,7 +83,7 @@ void test_sorts()
 {
     std::cout << std::endl;
 
-    const int size = 40000;  //00;
+    const int size = 400000;
 
     int src[size];
 
@@ -112,42 +92,47 @@ void test_sorts()
 
     int_buffer to_sort(src, size);
 
-
-    //Start selection sort
-    auto startselection = std::chrono::high_resolution_clock::now();
     
-    selection_sort(to_sort.begin(), to_sort.end());
-    
-    auto finishselection = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> elapsedselection = finishselection - startselection;
-    
-    std::cout << "Selection sort took: " << elapsedmerge.count() << "s." << std::endl;
-    
-    
-    to_sort = int_buffer(src, size);
 
     //Start merge sort
-    auto startmerge = std::chrono::high_resolution_clock::now();
+    auto start = std::chrono::high_resolution_clock::now();
     
-    merge_sort(to_sort.begin(), to_sort.end());
+    //merge_sort(to_sort.begin(), to_sort.end());
+    int_sorted srt(src, size);
+
+    auto finish = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = finish - start;
     
-    auto finishmerge = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> elapsedmerge = finishmerge - startmerge;
-    
-    std::cout << "Merge sort took: " << elapsedmerge.count() << "s." << std::endl;
+    std::cout << "Merge sort took: " << elapsed.count() << "s." << std::endl;
 
     
     to_sort = int_buffer(src, size);
 
     //Start std::sort
-    auto startstd = std::chrono::high_resolution_clock::now();
+    start = std::chrono::high_resolution_clock::now();
     
     std::sort(to_sort.begin(), to_sort.end());
     
-    auto finishstd = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> elapsedstd = finishstd - startstd;
+    finish = std::chrono::high_resolution_clock::now();
+    elapsed = finish - start;
     
-    std::cout << "std::sort took: " << elapsedstd.count() << "s." << std::endl;
+    std::cout << "std::sort took: " << elapsed.count() << "s." << std::endl;
 
+    
+    to_sort = int_buffer(src, size);
+
+    //Start selection sort
+    start = std::chrono::high_resolution_clock::now();
+    
+    selection_sort(to_sort.begin(), to_sort.end());
+    
+    finish = std::chrono::high_resolution_clock::now();
+    elapsed = finish - start;
+    
+    std::cout << "Selection sort took: " << elapsed.count() << "s." << std::endl;
+    
+    
+
+    
     std::cout << std::endl;
 }
