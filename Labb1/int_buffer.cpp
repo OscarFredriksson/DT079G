@@ -18,9 +18,10 @@ int_buffer::int_buffer(const int_buffer& rhs)
 };
 
 int_buffer::int_buffer(int_buffer&& rhs)
+    :_ptr(rhs._ptr), _size(rhs._size)
 {
-    std::swap(_ptr, rhs._ptr);
-    std::swap(_size, rhs._size);
+    rhs._ptr = nullptr;
+    rhs._size = 0;
 };
 
 int_buffer & int_buffer::operator=(const int_buffer& rhs)
@@ -31,6 +32,8 @@ int_buffer & int_buffer::operator=(const int_buffer& rhs)
 
     std::swap(_ptr, tmp._ptr);
     std::swap(_size, tmp._size);
+
+    //std::swap(*this, tmp);
     
     return *this;
 };
@@ -57,7 +60,7 @@ size_t int_buffer::size() const
 
 int_buffer::~int_buffer()
 {
-    if(_ptr != nullptr) delete[] _ptr;
+    delete[] _ptr;
 };
 
 int* int_buffer::begin()

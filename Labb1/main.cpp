@@ -2,7 +2,12 @@
 #include "int_sorted.h"
 #include <iostream>
 
-void print_buffer(int_buffer src);
+void print_buffer(int_buffer src)
+{
+    std::cout << std::endl;
+    for(int* i = src.begin(); i != src.end(); i++)
+        std::cout << *i << std::endl;
+}
 
 void f(int_buffer buf);
 
@@ -60,13 +65,15 @@ int main()
 
     print_sorted(test_sorted);
 
-    return 0;
-}
+    int_buffer test(test_buffer);
 
-void print_buffer(int_buffer src)
-{
-    for(int* i = src.begin(); i != src.end(); i++)
-        std::cout << *i << std::endl;
+    print_buffer(test);
+
+    selection_sort(test.begin(), test.end());
+
+    print_buffer(test);
+
+    return 0;
 }
 
 void f(int_buffer buf)
@@ -103,11 +110,10 @@ void selection_sort(int* begin, int* end)
     {
         int* min = i;
 
-        for(int* j = i; i != end; j++)
+        for(int* j = i; j != end; j++)
             if(*j < *min) 
                 min = j;
-        
-    //if(min != i)    
-    std::swap(i, min);
+  
+    std::swap(*i, *min);
     }
 }
