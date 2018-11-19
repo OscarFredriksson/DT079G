@@ -1,6 +1,9 @@
 //#include "int_buffer.h"
 #include "int_sorted.h"
 #include <iostream>
+#include <random>
+
+void f(int_buffer buf);
 
 void print_buffer(int_buffer src)
 {
@@ -9,8 +12,6 @@ void print_buffer(int_buffer src)
         std::cout << *i << std::endl;
 }
 
-void f(int_buffer buf);
-
 void print_sorted(int_sorted src)
 {
     std::cout << std::endl;
@@ -18,9 +19,9 @@ void print_sorted(int_sorted src)
         std::cout << *i << std::endl;
 }
 
-int_sorted sort(const int* begin , const int* end);
-
 void selection_sort(int* begin, int* end);
+
+void test_insert();
 
 int main()
 {
@@ -29,49 +30,9 @@ int main()
     int test_source[6] = {5,2,1,2,7,5};
     int_buffer test_buffer(test_source, 6);
 
-    //int_sorted test = sort(test_buffer.begin(), test_buffer.end());
+    test_insert();
 
-    //print_sorted(test);
-
-    /*int_sorted test_sorted = sort(test_buffer.begin(), test_buffer.end());
-
-    print_sorted(test_sorted);*/
-
-    /*int_sorted test2(test_buffer.begin(), test_buffer.size());
-
-    int_sorted test3(nullptr, 0);
-    test3 = std::move(test_sorted); 
-
-    print_sorted(test3);
-
-    int_buffer buffer2(test_buffer);
-
-    int_sorted merge_with(test_buffer.begin(), test_buffer.size());
-
-    merge_with.insert(4);
-    merge_with.insert(19);
-    merge_with.insert(-2);
-    merge_with.insert(5);
-
-    print_sorted(merge_with);
-
-    test_sorted = test_sorted.merge(merge_with);
-
-    print_sorted(test_sorted);*/
-
-    //int_sorted test_sorted(test_buffer.begin(), 6);
-
-    int_sorted test_sorted = sort(test_buffer.begin(), test_buffer.end());
-
-    print_sorted(test_sorted);
-
-    int_buffer test(test_buffer);
-
-    print_buffer(test);
-
-    selection_sort(test.begin(), test.end());
-
-    print_buffer(test);
+    for(int i )
 
     return 0;
 }
@@ -92,18 +53,6 @@ void f(int_buffer buf)
     //destructor för buf körs
 }
 
-int_sorted sort(const int* begin , const int* end)
-{
-    if (begin == end)   return int_sorted(nullptr, 0); 
-    if (begin == end -1)    return int_sorted(begin, 1);
-
-    ptrdiff_t half = (end - begin) / 2; // pointer diff type
-
-    const int* mid = begin + half;
-    
-    return sort(begin, mid).merge(sort(mid, end));
-}
-
 void selection_sort(int* begin, int* end)
 {
     for(int* i = begin; i != end; i++)
@@ -116,4 +65,19 @@ void selection_sort(int* begin, int* end)
   
     std::swap(*i, *min);
     }
+}
+
+void test_insert()
+{
+    std::random_device rd;
+    std::mt19937 seed(rd());
+    std::uniform_real_distribution<int> rndm(1 999);
+
+    int_sorted test(nullptr, 0);
+
+    for(int i = 0; i < 200; i++)
+        test.insert(rndm(seed));
+
+    print_sorted(test);
+
 }
