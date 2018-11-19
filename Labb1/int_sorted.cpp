@@ -23,7 +23,7 @@ int* int_sorted::insert(int value)
 {
     int_buffer temp_buffer(_buffer.size()+1);
 
-    int* insertpoint = _buffer.begin();
+    int* insertpoint = temp_buffer.begin();
 
     for(const int* i = _buffer.begin(); i != _buffer.end(); i++)
     {
@@ -31,16 +31,16 @@ int* int_sorted::insert(int value)
         ++insertpoint;
     }
     
-    int* temp_iter = temp_buffer.begin();
+    *insertpoint = value;
 
-    for(int* i = _buffer.begin(); i != _buffer.end() + 1; i++, temp_iter++)
+    const int* prev_iter = _buffer.begin();
+    int* new_iter = temp_buffer.begin();
+
+    for(;prev_iter != _buffer.end();++prev_iter, ++new_iter)
     {
-        if(i == insertpoint)    
-        {
-            *temp_iter = value;
-            temp_iter++;
-        }
-        *temp_iter = *i;
+        if(new_iter == insertpoint) ++new_iter;
+
+        *new_iter = *prev_iter;
     }
 
     _buffer = std::move(temp_buffer); 

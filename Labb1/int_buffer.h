@@ -35,8 +35,8 @@ public:
     ~int_buffer();
 
 private:
-
     int* _ptr = nullptr;
     size_t _size = 0;
 
+    void swap(int_buffer& swap_with);
 };

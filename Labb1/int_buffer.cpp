@@ -1,6 +1,7 @@
 #include "int_buffer.h"
 #include <utility>  //move
 #include <algorithm>
+#include <iostream>
 
 int_buffer::int_buffer(size_t size) 
     : _size(size), _ptr(new int[size]){};
@@ -26,29 +27,21 @@ int_buffer::int_buffer(int_buffer&& rhs)
 
 int_buffer & int_buffer::operator=(const int_buffer& rhs)
 {
-    if (this == &rhs) return *this;
-
     int_buffer tmp(rhs);
 
-    std::swap(_ptr, tmp._ptr);
-    std::swap(_size, tmp._size);
-
-    //std::swap(*this, tmp);
+    swap(tmp);
     
     return *this;
 };
 
 int_buffer& int_buffer::operator=(int_buffer&& rhs)
 {
-    if (this == &rhs) return *this;
-    
-    delete[] _ptr;
+    //if (this == &rhs) return *this;
 
-    _ptr = rhs._ptr;
-    rhs._ptr = nullptr;
-    
-    _size = rhs.size();
-    rhs._size = 0;
+    swap(rhs); 
+
+    //rhs._ptr = nullptr;
+    //rhs._size = 0;
 
     return *this;
 };
@@ -59,7 +52,7 @@ size_t int_buffer::size() const
 };
 
 int_buffer::~int_buffer()
-{
+{    
     delete[] _ptr;
 };
 
@@ -81,4 +74,10 @@ const int* int_buffer::begin() const
 const int* int_buffer::end() const
 {
     return _ptr + _size;
+};
+
+void int_buffer::swap(int_buffer& swap_with)
+{
+    std::swap(_size, swap_with._size);
+    std::swap(_ptr, swap_with._ptr);
 };

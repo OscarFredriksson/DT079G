@@ -1,4 +1,3 @@
-//#include "int_buffer.h"
 #include "int_sorted.h"
 #include <iostream>
 #include <random>
@@ -31,8 +30,6 @@ int main()
     int_buffer test_buffer(test_source, 6);
 
     test_insert();
-
-    for(int i )
 
     return 0;
 }
@@ -71,7 +68,8 @@ void test_insert()
 {
     std::random_device rd;
     std::mt19937 seed(rd());
-    std::uniform_real_distribution<int> rndm(1 999);
+    std::uniform_int_distribution<int> rndm(1, 500);
+
 
     int_sorted test(nullptr, 0);
 
@@ -79,5 +77,4 @@ void test_insert()
         test.insert(rndm(seed));
 
     print_sorted(test);
-
 }
