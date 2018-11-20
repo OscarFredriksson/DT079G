@@ -1,31 +1,31 @@
 #include "int_buffer.h"
 #include <utility>  //move
 #include <algorithm>
-#include <iostream>
 
-int_buffer::int_buffer(size_t size) 
-    : _size(size), _ptr(new int[size]){};
+int_buffer::int_buffer(size_t size)     //"Default" konstruktor
+    : _size(size), _ptr(new int[size])
+{};
     
-int_buffer::int_buffer(const int* source , size_t size)
+int_buffer::int_buffer(const int* source , size_t size) //Resize konstruktor
     : _size(size), _ptr(new int[size])
 {    
     std::copy(source, source + size, _ptr);
 };
 
-int_buffer::int_buffer(const int_buffer& rhs)
+int_buffer::int_buffer(const int_buffer& rhs)   //Copy konstruktor
     : _size(rhs.size()), _ptr(new int[rhs.size()])
 {
     std::copy(rhs.begin(), rhs.end(), begin());
 };
 
-int_buffer::int_buffer(int_buffer&& rhs)
+int_buffer::int_buffer(int_buffer&& rhs)    //Move konstruktor
     :_ptr(rhs._ptr), _size(rhs._size)
 {
     rhs._ptr = nullptr;
     rhs._size = 0;
 };
 
-int_buffer & int_buffer::operator=(const int_buffer& rhs)
+int_buffer & int_buffer::operator=(const int_buffer& rhs)   //Copy assign
 {
     int_buffer tmp(rhs);
 
@@ -34,14 +34,9 @@ int_buffer & int_buffer::operator=(const int_buffer& rhs)
     return *this;
 };
 
-int_buffer& int_buffer::operator=(int_buffer&& rhs)
+int_buffer& int_buffer::operator=(int_buffer&& rhs) //Move assign
 {
-    //if (this == &rhs) return *this;
-
     swap(rhs); 
-
-    //rhs._ptr = nullptr;
-    //rhs._size = 0;
 
     return *this;
 };

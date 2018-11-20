@@ -8,35 +8,36 @@ class int_buffer
 { 
 public:
     
-    int_buffer() = delete;
+    int_buffer() = delete;  //Ta bort default-konstruktorn
 
-    explicit int_buffer(size_t size);
+    explicit int_buffer(size_t size);   //"default" konstruktor
 
-    int_buffer(const int* source , size_t size);    //resize constructor
+    int_buffer(const int* source , size_t size);    //resize konstruktor
     
-    int_buffer(const int_buffer& rhs); //copy construct
+    int_buffer(const int_buffer& rhs); //copy konstruktor
     
-    int_buffer(int_buffer&& rhs); //move construct
+    int_buffer(int_buffer&& rhs); //move konstruktor
     
-    int_buffer & operator=(const int_buffer& rhs); //copy assign
+    int_buffer & operator=(const int_buffer& rhs); //copy assignment
+
+    int_buffer & operator=(int_buffer&& rhs);   //move assignment
     
-    int_buffer & operator=(int_buffer&& rhs);   //move assign
+    size_t size() const;    //Returnerar antal element
     
-    size_t size() const;
+    int* begin();   //Returnerar adressen till första elementet
     
-    int* begin();
+    int* end();     //Returnerar adressen till sista elementet
     
-    int* end();
+    const int* begin() const;   //Samma som föregående, men för konstanta object
     
-    const int* begin() const; 
-    
-    const int* end() const; 
+    const int* end() const;
 
     ~int_buffer();
 
 private:
     int* _ptr = nullptr;
-    size_t _size = 0;
+    
+    size_t _size = 0;   
 
-    void swap(int_buffer& swap_with);
+    void swap(int_buffer& swap_with);   //Swaps two buffers
 };

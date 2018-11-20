@@ -5,15 +5,9 @@
 #include <iostream>
 
 int_sorted::int_sorted(const int* source, size_t size)
-    :_buffer(nullptr, 0)
+    :_buffer(source, size)
 {
-    if(size == 1)
-    {
-        //insert(*source);
-        int_buffer temp(source, size);
-        _buffer = std::move(temp);
-    }
-    if(size < 2)    return;
+    if(size <= 1)   return;
 
     int_sorted temp = sort(source, source + size);
  
@@ -34,7 +28,8 @@ int* int_sorted::insert(int value)
     for(const int* i = _buffer.begin(); i != _buffer.end(); i++)
     {
         if(value < *i) break;
-        ++insertpoint;
+        
+        insertpoint++;
     }
     
     *insertpoint = value;
@@ -42,7 +37,7 @@ int* int_sorted::insert(int value)
     const int* prev_iter = _buffer.begin();
     int* new_iter = temp_buffer.begin();
 
-    for(;prev_iter != _buffer.end();++prev_iter, ++new_iter)
+    for(;prev_iter != _buffer.end(); ++prev_iter, ++new_iter)
     {
         if(new_iter == insertpoint) ++new_iter;
 

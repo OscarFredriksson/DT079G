@@ -1,24 +1,13 @@
 #include "int_sorted.h"
 #include <iostream>
-#include <random>
 #include <ctime>
 #include <chrono>
 
 void f(int_buffer buf);
 
-void print_buffer(int_buffer src)
-{
-    std::cout << std::endl;
-    for(int* i = src.begin(); i != src.end(); i++)
-        std::cout << *i << std::endl;
-}
+void print_buffer(int_buffer src);
 
-void print_sorted(int_sorted src)
-{
-    std::cout << std::endl;
-    for(const int* i = src.begin(); i != src.end(); i++)
-        std::cout << *i << std::endl;
-}
+void print_sorted(int_sorted src);
 
 void selection_sort(int* begin, int* end);
 
@@ -41,7 +30,8 @@ int main()
 
 void f(int_buffer buf)
 {
-    //constructor för buf körs
+    //"default" constructor för buf körs
+
     int j = 1;
     for(int* i = buf.begin(); i != buf.end(); i++)  //Icke-konstanta begin och end funktioner körs här
     {
@@ -53,6 +43,20 @@ void f(int_buffer buf)
         std::cout << *i << std::endl;
 
     //destructor för buf körs
+}
+
+void print_buffer(int_buffer src)
+{
+    std::cout << std::endl;
+    for(int* i = src.begin(); i != src.end(); i++)
+        std::cout << *i << std::endl;
+}
+
+void print_sorted(int_sorted src)
+{
+    std::cout << std::endl;
+    for(const int* i = src.begin(); i != src.end(); i++)
+        std::cout << *i << std::endl;
 }
 
 void selection_sort(int* begin, int* end)
@@ -97,7 +101,6 @@ void test_sorts()
     //Start merge sort
     auto start = std::chrono::high_resolution_clock::now();
     
-    //merge_sort(to_sort.begin(), to_sort.end());
     int_sorted srt(src, size);
 
     auto finish = std::chrono::high_resolution_clock::now();
@@ -130,9 +133,6 @@ void test_sorts()
     elapsed = finish - start;
     
     std::cout << "Selection sort took: " << elapsed.count() << "s." << std::endl;
-    
-    
-
     
     std::cout << std::endl;
 }
