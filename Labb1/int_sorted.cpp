@@ -2,7 +2,6 @@
 #include <utility>
 #include <stdio.h>
 #include <algorithm>
-#include <iostream>
 
 int_sorted::int_sorted(const int* source, size_t size)
     :_buffer(source, size)

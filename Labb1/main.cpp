@@ -21,9 +21,9 @@ int main()
 
     //f(int_buffer(10));
 
-    //test_insert();
+    test_insert();
 
-    test_sorts();
+    //test_sorts();
 
     return 0;
 }
