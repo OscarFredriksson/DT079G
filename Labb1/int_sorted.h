@@ -13,7 +13,7 @@ public:
     
     int_sorted() = delete;  //Ta bort default-konstruktorn
 
-    int_sorted(const int* source , size_t size);    //konstruktorn tar source och dess size och ser till att den konstruerade int_sorted innehåller samma element, men sorterade
+    int_sorted(const int* source , size_t size);    //konstruktorn tar source och dess size och ser till att den konstruerade int_sorted innehåller samma element, men sorterad
     
     size_t size() const;    //Returnerar antal element
     

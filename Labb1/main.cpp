@@ -19,11 +19,11 @@ int main()
 {
     srand(time(NULL));
 
-    f(int_buffer(10));
+    //f(int_buffer(10));
 
     //test_insert();
 
-    //test_sorts();
+    test_sorts();
 
     return 0;
 }

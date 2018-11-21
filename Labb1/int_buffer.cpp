@@ -21,7 +21,7 @@ int_buffer::int_buffer(const int_buffer& rhs)   //Copy konstruktor
 int_buffer::int_buffer(int_buffer&& rhs)    //Move konstruktor
     :_ptr(rhs._ptr), _size(rhs._size)
 {
-    rhs._ptr = nullptr;
+    rhs._ptr = nullptr; //Förhindra att destruktorn frigör samma minne flera gånger
     rhs._size = 0;
 };
 
@@ -48,7 +48,7 @@ size_t int_buffer::size() const
 
 int_buffer::~int_buffer()
 {    
-    delete[] _ptr;
+   if(_ptr != nullptr)  delete[] _ptr;
 };
 
 int* int_buffer::begin()
