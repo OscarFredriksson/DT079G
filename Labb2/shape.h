@@ -12,7 +12,7 @@ public:
 
     Shape(const Shape& src);
 
-    virtual double getArea() const = 0; //Pure virtual
+    virtual double getArea() const = 0; //Pure virtual function
 
     std::string getColour() const;
 

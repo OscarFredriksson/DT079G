@@ -1,3 +1,6 @@
+#ifndef CYLINDER_H
+#define CYLINDER_H
+
 #include "circle.h"
 
 class Cylinder: public Circle
@@ -22,3 +25,5 @@ public:
 protected:
     double height = 0;
 };
+
+#endif

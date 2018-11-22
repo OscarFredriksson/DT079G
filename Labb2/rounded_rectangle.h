@@ -1,3 +1,6 @@
+#ifndef ROUNDED_RECTANGLE_H
+#define ROUNDED_RECTANGLE_H
+
 #include "rectangle.h"
 
 class Rounded_Rectangle: public Rectangle
@@ -23,3 +26,5 @@ protected:
     static constexpr double pi = 3.14159265359; 
 
 };
+
+#endif

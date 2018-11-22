@@ -39,5 +39,5 @@ double Rounded_Rectangle::getArea() const
     
     const int rounded_corners = corner_radius * corner_radius * pi; //Replace with the rounded
 
-    return getWidth() * getHeight() - squared_corners + rounded_corners;
+    return Rectangle::getArea() - squared_corners + rounded_corners;
 }
