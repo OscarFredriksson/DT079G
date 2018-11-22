@@ -12,16 +12,16 @@ Rounded_Rectangle::Rounded_Rectangle(const Rounded_Rectangle& src)
     :Rectangle(src.getWidth(), src.getHeight()), corner_radius(src.getCornerRadius())
 {}
 
-Rounded_Rectangle& operator=(const Rounded_Rectangle& rhs)
+Rounded_Rectangle& Rounded_Rectangle::operator=(const Rounded_Rectangle& rhs)
 {
     Rounded_Rectangle tmp(rhs);
 
-    swap(rhs);
+    swap(tmp);
 
     return *this;
 }
 
-void swap(Rounded_Rectangle& swap_with)
+void Rounded_Rectangle::swap(Rounded_Rectangle& swap_with)
 {
     Rectangle::swap(swap_with);
 
