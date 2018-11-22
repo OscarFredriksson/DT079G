@@ -7,7 +7,11 @@ public:
 
     Cylinder(double radius, double height, std::string colour = "vit");
 
-    Cylinder(const Cylinder& src, double height);   //Copy construct
+    Cylinder(const Circle& src, double height);   //Copy construct
+
+    Cylinder& operator=(const Cylinder& rhs);
+
+    void swap(Cylinder& swap_with);
 
     double getHeight() const;
 
@@ -15,6 +19,6 @@ public:
 
     double getArea() const;
 
-private:
+protected:
     double height = 0;
 };

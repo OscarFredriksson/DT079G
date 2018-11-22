@@ -12,16 +12,23 @@ public:
 
     Circle(const Circle& src);
 
+    Circle& operator=(const Circle& rhs);
+
+    void swap(Circle& swap_with);
+
     double getRadius() const;
 
-    double getArea() const;
+    virtual double getArea() const;
 
     double getCircumference() const;
 
-private:
+protected:
+    Shape* parent;
+
     double radius = 0;
 
-    static constexpr double pi = 3.1415;
+    static constexpr double pi = 3.14159265359;
+
 };
 
 #endif

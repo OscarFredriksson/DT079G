@@ -10,9 +10,15 @@ public:
 
     Shape(std::string colour);
 
+    Shape(const Shape& src);
+
+    virtual double getArea() const = 0; //Pure virtual
+
     std::string getColour() const;
 
-private:
+    void swap(Shape& swap_with);
+
+protected:
     std::string colour = "";
 };
 

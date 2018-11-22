@@ -9,9 +9,17 @@ public:
 
     Rounded_Rectangle(const Rounded_Rectangle& src);   
 
+    Rounded_Rectangle& operator=(const Rounded_Rectangle& rhs);
+
+    void swap(Rounded_Rectangle& swap_with);
+
     double getCornerRadius() const;
 
-private:
+    double getArea() const;
+
+protected:
     double corner_radius = 0;
+
+    static constexpr double pi = 3.14159265359; 
 
 };

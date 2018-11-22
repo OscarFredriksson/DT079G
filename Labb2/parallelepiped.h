@@ -12,11 +12,17 @@ public:
 
     Parallelepiped(double height, double width, double depth, std::string colour = "vit");
 
+    Parallelepiped& operator=(const Parallelepiped& rhs);
+
+    void swap(Parallelepiped& swap_with);
+
+    double getDepth() const;
+
     double getArea() const;
 
     double getVolume() const;
 
-private:
+protected:
     double depth = 0;
 };
 
