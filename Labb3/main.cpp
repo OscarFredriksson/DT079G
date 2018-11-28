@@ -3,6 +3,7 @@
 
 int main()
 {
+
     p_queue<int> list;
     
     list.push(5);

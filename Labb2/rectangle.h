@@ -22,7 +22,7 @@ public:
     
     double getWidth() const;
 
-    virtual double getArea() const;
+    virtual double getArea() const override;
 
 protected:
     double height = 0;

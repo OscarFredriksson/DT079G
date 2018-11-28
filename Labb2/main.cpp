@@ -20,6 +20,7 @@ int main()
     shapes.push_back(new Rounded_Rectangle(2,2,1, "white"));
     shapes.push_back(new Cylinder(1,1, "white"));
     shapes.push_back(new Parallelepiped(1,1,1, "BLUE"));
+    shapes.push_back(new Rectangle(2, 2, "green"));
 
     getData(shapes);
 
@@ -28,6 +29,8 @@ int main()
 
 void getData(std::vector<Shape*> shapes)
 {
+    std::cout << std::endl;
+
     double totalArea = 0;
     std::map<std::string, size_t> colours;
 
@@ -46,4 +49,6 @@ void getData(std::vector<Shape*> shapes)
     
     for(auto colour: colours)
         std::cout << colour.first << ": " << colour.second << std::endl; 
+
+    std::cout << std::endl;
 }

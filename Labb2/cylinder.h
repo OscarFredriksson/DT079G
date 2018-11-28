@@ -20,7 +20,7 @@ public:
 
     double getVolume() const;
 
-    double getArea() const;
+    double getArea() const override;
 
 protected:
     double height = 0;

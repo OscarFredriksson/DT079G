@@ -1,3 +1,6 @@
+#ifndef P_QUEUE_H
+#define P_QUEUE_H
+
 #include <vector>
 #include <utility>
 #include <algorithm>
@@ -21,7 +24,6 @@ public:
         list.push_back(std::make_pair(e, 5));
 
         std::sort(list.begin(), list.end());
-
     }
 
     int size() const
@@ -52,3 +54,5 @@ public:
 private:
     std::vector<std::pair<T, int>> list;
 };
+
+#endif

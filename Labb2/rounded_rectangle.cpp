@@ -33,7 +33,7 @@ double Rounded_Rectangle::getCornerRadius() const
     return corner_radius;
 }
 
-double Rounded_Rectangle::getArea() const
+double Rounded_Rectangle::getArea() const override
 {
     const int squared_corners = 4 * corner_radius * corner_radius;   //Remove the squared corners
     

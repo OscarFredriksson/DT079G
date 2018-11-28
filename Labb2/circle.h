@@ -18,17 +18,14 @@ public:
 
     double getRadius() const;
 
-    virtual double getArea() const;
+    virtual double getArea() const override;
 
     double getCircumference() const;
 
 protected:
-    Shape* parent;
-
     double radius = 0;
 
     static constexpr double pi = 3.14159265359;
-
 };
 
 #endif

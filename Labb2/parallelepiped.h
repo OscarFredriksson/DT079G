@@ -18,7 +18,7 @@ public:
 
     double getDepth() const;
 
-    double getArea() const;
+    double getArea() const override;
 
     double getVolume() const;
 
