@@ -31,7 +31,7 @@ double Rectangle::getWidth() const
     return width;
 }
 
-double Rectangle::getArea() const override
+double Rectangle::getArea() const
 {
     return height * width;
 }

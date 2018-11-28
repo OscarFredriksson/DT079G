@@ -23,7 +23,7 @@ double Circle::getRadius() const
     return radius;
 }
 
-double Circle::getArea() const override
+double Circle::getArea() const
 {
     return radius * radius * pi;
 }

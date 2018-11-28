@@ -29,7 +29,7 @@ void Parallelepiped::swap(Parallelepiped& swap_with)
     std::swap(depth, swap_with.depth);
 }
 
-double Parallelepiped::getArea() const override
+double Parallelepiped::getArea() const
 {
     return 2* Rectangle::getArea() + 2*getWidth()*depth + 2*getHeight()*depth;
 }

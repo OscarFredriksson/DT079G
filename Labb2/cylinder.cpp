@@ -29,7 +29,7 @@ double Cylinder::getVolume() const
     return Circle::getArea() * height;
 }
 
-double Cylinder::getArea() const override
+double Cylinder::getArea() const
 {
     return 2 * Circle::getArea() + getCircumference() * height;
 }
