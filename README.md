@@ -1,8 +1,8 @@
 # DT079G
 Programmeringsmetodik
 
-## Labb1 - RAII, Minnesallokering och sortering
+#### Labb1 - RAII, Minnesallokering och sortering
 
-## Labb2 - Klassarv
+#### Labb2 - Klassarv
 
-## Labb3 - Templates
+#### Labb3 - Templates
