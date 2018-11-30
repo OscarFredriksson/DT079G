@@ -22,7 +22,7 @@ public:
 
 private:
     double corner_radius = 0;
-
+    
     static constexpr double pi = 3.14159265359; 
 };
 
