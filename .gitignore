@@ -1,1 +1,9 @@
+#ignore binary files:
+*
+!*.*
+!*/
+#-----
+
 .DS_Store
+*.exe
+
