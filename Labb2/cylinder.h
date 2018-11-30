@@ -22,7 +22,7 @@ public:
 
     double getArea() const override;
 
-protected:
+private:
     double height = 0;
 };
 

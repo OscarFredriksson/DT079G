@@ -22,7 +22,7 @@ public:
 
     double getVolume() const;
 
-protected:
+private:
     double depth = 0;
 };
 

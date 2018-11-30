@@ -6,7 +6,7 @@
 class Rectangle: public Shape
 {
 public:
-    Rectangle() = default;
+    Rectangle() = delete;
 
     Rectangle(double height, double width, std::string colour = "vit");
 
@@ -24,7 +24,7 @@ public:
 
     virtual double getArea() const override;
 
-protected:
+private:
     double height = 0;
     double width = 0;
 };

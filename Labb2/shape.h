@@ -12,13 +12,13 @@ public:
 
     Shape(const Shape& src);
 
-    virtual double getArea() const = 0; //Pure virtual function
+    virtual double getArea() const = 0; //Pure virtual funktion
 
     std::string getColour() const;
 
     void swap(Shape& swap_with);
 
-protected:
+private:
     std::string colour = "";
 };
 

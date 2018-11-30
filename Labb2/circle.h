@@ -22,7 +22,7 @@ public:
 
     double getCircumference() const;
 
-protected:
+private:
     double radius = 0;
 
     static constexpr double pi = 3.14159265359;
