@@ -14,14 +14,14 @@ public:
 
     T pop()
     {
-        T ret = list.back().first;
+        T ret = list.back();
         list.pop_back();
         return ret;
     }
     
     void push(T e)
     {
-        list.push_back(std::make_pair(e, 5));
+        list.push_back(e);
 
         std::sort(list.begin(), list.end());
     }
@@ -38,21 +38,27 @@ public:
 
     T* begin() const
     {
-        return list.begin().first;
+        return list.begin();
     }
 
     T* end() const
     {
-        return list.end().first;
+        return list.end();
     }
 
     T& operator[](size_t pos)
     {  
-        return list[pos].first; 
+        return list[pos]; 
     }
 
+    static bool less(T a1, T a2)
+    {
+        return a1 < a2;
+    }
+    
+
 private:
-    std::vector<std::pair<T, int>> list;
+    std::vector<T> list;
 };
 
 #endif
