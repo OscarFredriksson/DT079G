@@ -4,9 +4,13 @@
 #include <vector>
 #include <utility>
 #include <algorithm>
+#include <iostream>
+#include <functional>
+#include <cstdlib>
 
-template<class T>
 
+
+template<typename T>
 class p_queue
 {
 public:
@@ -18,15 +22,37 @@ public:
         list.pop_back();
         return ret;
     }
-    
-    void push(T e)
-    {
-        list.push_back(e);
 
-        std::sort(list.begin(), list.end());
+    void push(T e)
+    {        
+        auto pos = find_pos(begin(), end(), e);
+
+        list.insert(pos, e);
     }
 
-    int size() const
+    typename std::vector<T>::iterator begin()
+    {
+        return list.begin();
+    }
+
+    typename std::vector<T>::iterator end()
+    {
+        return list.end();
+    }
+
+    template<typename InputIt>
+    InputIt find_pos(InputIt begin, InputIt end, T e)
+    {
+        while(begin != end)
+        {
+            if(less(*begin, e)) return begin;
+            
+            begin++;
+        }
+        return end;
+    }
+
+    size_t size() const
     {
         return list.size();
     }
@@ -36,26 +62,22 @@ public:
         return list.empty();
     }
 
-    T* begin() const
-    {
-        return list.begin();
-    }
-
-    T* end() const
-    {
-        return list.end();
-    }
-
     T& operator[](size_t pos)
     {  
         return list[pos]; 
     }
-
-    static bool less(T a1, T a2)
+ 
+ 
+    bool less(T a, T b) const
     {
-        return a1 < a2;
+        return a < b;
     }
-    
+
+
+    /*bool less(T a, T b) const
+    {
+        return a < b;
+    }*/
 
 private:
     std::vector<T> list;

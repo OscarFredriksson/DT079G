@@ -2,34 +2,24 @@
 #include <iostream>
 #include <string>
 
-struct sellOrder
-{
-    std::string name;
-    double price;
-};
 
-struct buyOrder
+void print(std::pair<int, std::string> e)
 {
-    std::string name;
-    double price;
-};
+    std::cout << e.first << " " << e.second << std::endl;
+}
+
 
 int main()
 {
 
-    p_queue<int> list;
+    p_queue<std::pair<int, std::string>> list;
     
-    list.push(5);
-    list.push(6);
-    list.push(3);
+    list.push(std::make_pair(5, "Erik Pendel"));
+    list.push(std::make_pair(6, "Jarl Wallenburg"));
+    list.push(std::make_pair(3, "Joakim von Anka"));
 
-    std::cout << p_queue<int>::less(list[1], list[2]) << std::endl;
-
-
-    //for(int i = 0; i < list.size(); i++)
-    //    std::cout << list[i] << std::endl;
-
-
+    for(auto e: list)
+        print(e);
 
     return 0;
 }
