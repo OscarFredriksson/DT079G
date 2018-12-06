@@ -2,12 +2,10 @@
 #include <iostream>
 #include <string>
 
-
 void print(std::pair<int, std::string> e)
 {
     std::cout << e.first << " " << e.second << std::endl;
 }
-
 
 int main()
 {
@@ -18,8 +16,7 @@ int main()
     list.push(std::make_pair(6, "Jarl Wallenburg"));
     list.push(std::make_pair(3, "Joakim von Anka"));
 
-    for(auto e: list)
-        print(e);
+    std::for_each(list.begin(), list.end(), print);
 
     return 0;
 }

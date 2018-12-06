@@ -61,23 +61,11 @@ public:
     {
         return list.empty();
     }
-
-    T& operator[](size_t pos)
-    {  
-        return list[pos]; 
-    }
- 
  
     bool less(T a, T b) const
     {
         return a < b;
     }
-
-
-    /*bool less(T a, T b) const
-    {
-        return a < b;
-    }*/
 
 private:
     std::vector<T> list;
