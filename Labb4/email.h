@@ -1,3 +1,6 @@
+#ifndef EMAIL_H
+#define EMAIL_H
+
 #include <string>
 #include <iostream>
 
@@ -40,3 +43,5 @@ struct CompSubjectWhoDate
 {
 	bool operator(const Email& lhs, const Email& rhs);
 };
+
+#endif

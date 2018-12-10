@@ -9,6 +9,15 @@ void Mailbox::push(const Email& email)
 	emails.push_back(email);
 }
 
+Email* begin() const
+{
+	return emails.begin();
+}
+
+Email* end() const
+{
+	return emails.end();
+}
 
 void Mailbox::sortWho()
 {
