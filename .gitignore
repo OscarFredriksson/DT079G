@@ -2,10 +2,12 @@
 *
 !*.*
 !*/
+!Makefile
 #-----
 
 .DS_Store
 *.exe
 */main.dSYM/
 .vscode/
+
 
