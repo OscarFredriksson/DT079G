@@ -1,24 +1,27 @@
 #ifndef MAILBOX_H
 #define MAILBOX_H
 
-#include "vector.h"
+#include <vector>
 #include "email.h"
 
-class MailBox
+class Mailbox
 {
-	MailBox(size_t size = 0);
+public:
+	Mailbox(size_t size = 0);
 
 	void push(const Email& email);
 
-	Email* begin() const;
+	std::vector<Email>::iterator begin();
 
-	Email* end() const;
+	std::vector<Email>::iterator end();
 
-	void sortWho;
+	Email& operator[](size_t pos);
 
-	void sortDate;
+	void sortWho();
 
-	void sortSubject;
+	void sortDate();
+
+	void sortSubject();
 
 private:
 	std::vector<Email> emails;

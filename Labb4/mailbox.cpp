@@ -9,14 +9,19 @@ void Mailbox::push(const Email& email)
 	emails.push_back(email);
 }
 
-Email* begin() const
+std::vector<Email>::iterator Mailbox::begin()
 {
 	return emails.begin();
 }
 
-Email* end() const
+std::vector<Email>::iterator Mailbox::end()
 {
 	return emails.end();
+}
+
+Email& Mailbox::operator[](size_t pos)
+{
+	return emails[pos];
 }
 
 void Mailbox::sortWho()

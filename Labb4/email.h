@@ -8,12 +8,13 @@ struct CompWhoDateSubject;
 struct CompDateWhoSubject;
 struct CompSubjectWhoDate;
 
+
 struct Email
 {
 public:
 	Email(std::string who = "", std::string date = "", std::string subject = "");
 
-	friend std::ostream& operator<<(std::ostream&, const Email& rhs);
+	friend std::ostream& operator<<(std::ostream& stream, const Email& rhs);
 	
 	friend CompWhoDateSubject;
 	friend CompDateWhoSubject;
@@ -31,17 +32,17 @@ std::ostream& operator<<(std::ostream&, const Email& rhs);
 
 struct CompWhoDateSubject
 {
-	bool operator(const Email& lhs, const Email& rhs);
+	bool operator()(const Email& lhs, const Email& rhs) const;
 };
 
 struct CompDateWhoSubject 
 {
-	bool operator(const Email& lhs, const Email& rhs);
+	bool operator()(const Email& lhs, const Email& rhs) const;
 };
 
 struct CompSubjectWhoDate
 {
-	bool operator(const Email& lhs, const Email& rhs);
+	bool operator()(const Email& lhs, const Email& rhs) const;
 };
 
 #endif

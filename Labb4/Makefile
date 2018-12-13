@@ -1,7 +1,6 @@
 SrcFiles := $(wildcard *.cpp)
-Flags := -o -std=c++17
 
 main: $(SrcFiles)
-	g++ $(SrcFiles) $(Flags) main
+	g++ $(SrcFiles) -o main -std=c++17
 run: main
 	./main
