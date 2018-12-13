@@ -6,50 +6,29 @@
 #include <algorithm>
 #include <iostream>
 #include <functional>
-#include <cstdlib>
 
-
-
-template<typename T>
+template<typename T, typename Comp>
 class p_queue
 {
 public:
     p_queue() = default;
 
-    T pop()
-    {
-        T ret = list.back();
-        list.pop_back();
-        return ret;
-    }
-
     void push(T e)
-    {        
-        auto pos = find_pos(begin(), end(), e);
-
+    {     
+        auto pos = std::find_if(list.begin(), list.end(), less(e));
         list.insert(pos, e);
     }
 
-    typename std::vector<T>::iterator begin()
+    T pop()
     {
-        return list.begin();
+        T ret = list.front();
+        list.erase(list.begin());
+        return ret;
     }
 
-    typename std::vector<T>::iterator end()
+    T top()
     {
-        return list.end();
-    }
-
-    template<typename InputIt>
-    InputIt find_pos(InputIt begin, InputIt end, T e)
-    {
-        while(begin != end)
-        {
-            if(less(*begin, e)) return begin;
-            
-            begin++;
-        }
-        return end;
+        return list.front();
     }
 
     size_t size() const
@@ -61,14 +40,21 @@ public:
     {
         return list.empty();
     }
- 
-    bool less(T a, T b) const
-    {
-        return a < b;
-    }
 
 private:
     std::vector<T> list;
+
+    struct less
+    {
+        less(const T& value): value(value) 
+            {}
+        bool operator()(const T& e) const
+        {
+            Comp comp;
+            return comp(value, e);
+        }
+        T value;
+    };
 };
 
 #endif

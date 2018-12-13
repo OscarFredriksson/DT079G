@@ -1,23 +1,64 @@
 #include "p_queue.h"
 #include <iostream>
 #include <string>
+#include <cstdlib> //srand
+#include <ctime>
 
-void print(std::pair<int, std::string> e)
+struct Order
 {
-    std::cout << e.first << " " << e.second << std::endl;
-}
+    Order(unsigned int price, const std::string& broker):
+        price(price),
+        broker(broker)
+    {}
+
+    std::string broker;
+    unsigned int price;
+};
+
+struct less
+{
+    bool operator()(Order a, Order b)
+    {
+        return a.price < b.price;
+    }
+};
 
 int main()
 {
+    srand(time(NULL));
 
-    p_queue<std::pair<int, std::string>> list;
-    
-    list.push(std::make_pair(5, "Erik Pendel"));
-    list.push(std::make_pair(6, "Jarl Wallenburg"));
-    list.push(std::make_pair(3, "Joakim von Anka"));
+    p_queue<Order, less> buyOrders;
+    p_queue<Order, less> sellOrders;
 
-    std::for_each(list.begin(), list.end(), print);
+    for(int i = 0; i < 3; i++)
+    {
+        std::string broker;
+        if(i == 0)  broker = "Erik Pendel";
+        if(i == 1)  broker = "Jarl Wallenburg";
+        if(i == 2)  broker = "Joakim Von Anka";
+
+        for(int j = 0; j < 7; j++)
+        {
+            unsigned int random = rand() % 16 + 15;
+            buyOrders.push(Order(random, broker));
+            random = rand() % 16 + 15;
+            sellOrders.push(Order(random, broker));
+        
+        }
+    }
+
+    while(!buyOrders.empty() && !sellOrders.empty())
+    {
+        if(sellOrders.top().price <= buyOrders.top().price) 
+        {
+            Order buyOrder = buyOrders.pop();
+            Order sellOrder = sellOrders.pop();
+
+            if(buyOrder.broker != sellOrder.broker)
+                std::cout << buyOrder.broker << " köpte av " << sellOrder.broker << " för " << buyOrder.price << "kr." << std::endl; 
+        } 
+        else buyOrders.pop();
+    }
 
     return 0;
 }
-
