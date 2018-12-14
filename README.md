@@ -8,3 +8,7 @@ Programmeringsmetodik
 #### Labb3 - Templates
 
 #### Labb4 - STL Vectors och funktionsobjekt
+
+#### Labb5 - Generiska STL-algoritmer
+
+#### Project - Se repositoryt Super-Mario
