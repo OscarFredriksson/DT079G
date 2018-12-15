@@ -24,7 +24,7 @@ int main()
 	std::cout << "Sorterad på avsändare:" << std::endl;
 	std::for_each(mailbox.begin(), mailbox.end(), show);
 	std::cout << std::endl;
-
+	
 	mailbox.sortDate();
 	std::cout << "Sorterad på datum:" << std::endl;
 	std::for_each(mailbox.begin(), mailbox.end(), show);

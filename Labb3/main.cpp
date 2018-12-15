@@ -54,8 +54,7 @@ int main()
             Order buyOrder = buyOrders.pop();
             Order sellOrder = sellOrders.pop();
 
-            if(buyOrder.broker != sellOrder.broker)
-                std::cout << buyOrder.broker << " köpte av " << sellOrder.broker << " för " << buyOrder.price << "kr." << std::endl; 
+            std::cout << buyOrder.broker << " köpte av " << sellOrder.broker << " för " << buyOrder.price << "kr." << std::endl; 
         } 
         else buyOrders.pop();
     }

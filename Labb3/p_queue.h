@@ -26,7 +26,7 @@ public:
         return ret;
     }
 
-    T top()
+    T& top()
     {
         return list.front();
     }
@@ -46,13 +46,14 @@ private:
 
     struct less
     {
-        less(const T& value): value(value) 
-            {}
+        less(const T& value): value(value) {}
+        
         bool operator()(const T& e) const
         {
             Comp comp;
             return comp(value, e);
         }
+        
         T value;
     };
 };

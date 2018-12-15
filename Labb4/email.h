@@ -8,7 +8,6 @@ struct CompWhoDateSubject;
 struct CompDateWhoSubject;
 struct CompSubjectWhoDate;
 
-
 struct Email
 {
 public:
