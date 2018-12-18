@@ -10,6 +10,9 @@ public:
 
     bool operator==(const Car& rhs) const;
 
+    std::string getName() const;
+
+    double getSpeed() const;
 
 private:
     std::string name;
