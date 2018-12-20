@@ -7,7 +7,7 @@
 #include <array>
 #include <numeric>
 
-struct MyPrint
+struct MyPrint 
 {
     void operator()(const Car& car)
     {
