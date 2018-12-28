@@ -11,4 +11,4 @@ Programmeringsmetodik
 
 #### Labb5 - Generiska STL-algoritmer
 
-#### Project - Se repositoryt Super-Mario
+#### Projekt - Se repositoryt Super-Mario
